@@ -1,16 +1,16 @@
 # AutoApply AI
 
-Automated job application and matching platform (KTP capstone).
+Automated job application and matching platform.
 
 ## Run it
 
 ### 1. Backend
 ```bash
 cd backend
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+python -m venv .venv && source .venv\Scripts\activate
 pip install -r requirements.txt
 playwright install chromium
-cp .env.example .env        # then fill in MONGODB_URI and OPENAI_API_KEY
+cp .env.example .env        # then fill in MONGODB_URI and GEMINI_API_KEY
 uvicorn main:app --reload --port 8000
 ```
 API docs: http://localhost:8000/docs
