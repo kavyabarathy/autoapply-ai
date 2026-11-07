@@ -1,7 +1,7 @@
 import json
 import os
 
-from google import genai
+from openai import OpenAI
 
 _client = None
 
@@ -9,7 +9,7 @@ _client = None
 def _get_client():
     global _client
     if _client is None:
-        _client = genai.Client()
+        _client = OpenAI()
     return _client
 
 
@@ -29,7 +29,7 @@ def score_job(profile: dict, resume_text: str, job: dict) -> dict:
         f"JOB DESCRIPTION:\n{job.get('description', '')[:4000]}"
     )
     resp = _get_client().chat.completions.create(
-        model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
+        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
         response_format={"type": "json_object"},
         messages=[{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}],
         temperature=0.2,

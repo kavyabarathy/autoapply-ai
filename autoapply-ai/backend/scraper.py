@@ -1,4 +1,3 @@
-"""Playwright scraper for public Lever job boards (https://jobs.lever.co/<company>)."""
 from playwright.sync_api import sync_playwright
 
 
@@ -34,7 +33,7 @@ def scrape_lever(company: str, limit: int = 10) -> list[dict]:
                 content = page.locator(".content")
                 text = content.first.inner_text() if content.count() else page.inner_text("body")
                 item["description"] = text.strip()[:6000]
-            except Exception as exc:  # keep going if one posting fails
+            except Exception as exc:
                 item["description"] = ""
                 item["scrape_error"] = str(exc)
 
